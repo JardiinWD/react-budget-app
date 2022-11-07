@@ -9,7 +9,7 @@ const initialState = {
         //TODO(3) : Import a list of obj with dummy data
         { id: 1, incomeText: "Car Sold", incomeAmount: 15000 },
         { id: 2, incomeText: "Salary", incomeAmount: 5000 },
-        { id: 2, incomeText: "Bonus", incomeAmount: 13000 },
+        { id: 3, incomeText: "Bonus", incomeAmount: 13000 },
     ],
     // Create an empty array for expense
     expenseTransactions: [

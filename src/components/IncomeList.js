@@ -1,6 +1,14 @@
-import React from 'react'
+// TODO(1) Import the useContext hook from React
+import React, { useContext } from 'react'
+// TODO(2) Import the globalContext component
+import { GlobalContext } from '../context/GlobalState'
+import SingleTransaction from './SingleTransaction'
+
 
 const IncomeList = () => {
+    // TODO(2) Extract from the useContext the incomeTransactions
+    const { incomeTransactions } = useContext(GlobalContext)
+
     return (
         /* transactions transactions-income */
         <div className="transactions transactions-income">
@@ -9,17 +17,14 @@ const IncomeList = () => {
             {/* transaction-list */}
             <ul className="transaction-list">
                 {/* transaction */}
-                <li className="transaction">
-                    {/* text */}
-                    <span className="transaction-text">Salary</span>
-                    {/* amount */}
-                    <span className="transaction-amount">$5000</span>
-                    {/* delete-btn */}
-                    <button className="delete-btn">
-                        {/* fas fa-trash */}
-                        <i className="fas fa-trash"></i>
-                    </button>
-                </li>
+                {
+                    incomeTransactions.map(singleIncome => {
+                        // Declare the single item
+                        return (
+                            <SingleTransaction key={singleIncome.id} data={singleIncome} />
+                        )
+                    })
+                }
             </ul>
         </div>
     )
