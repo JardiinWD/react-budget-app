@@ -2,8 +2,7 @@
 import React, { createContext, useReducer } from 'react'
 import AppReducer from '../reducers/AppReducer'
 //TODO(9) : Import actions
-import { ACTION, ADD_INCOME } from '../reducers/actions'
-
+import { ADD_INCOME, ADD_EXPENSE } from '../reducers/actions'
 
 
 //TODO(2) : Create an initialState object
@@ -44,6 +43,18 @@ export const GlobalContextProvider = ({ children }) => {
         })
     }
 
+    /** Function that allows me to add a new expense from "AddTransaction.js"
+     * 
+     * @param {Object} expenseTransaction // A new expense object
+     */
+    const addExpense = expenseTransaction => {
+        // Call the dispatch fn
+        dispatch({
+            type: ADD_EXPENSE,
+            payload: expenseTransaction // It represents the payload of the action.
+        })
+    }
+
 
     //TODO(7) : Declare a return where you wrapped children into the provider
     return (
@@ -52,6 +63,7 @@ export const GlobalContextProvider = ({ children }) => {
             incomeTransactions: state.incomeTransactions,
             expenseTransactions: state.expenseTransactions,
             addIncome,
+            addExpense
         }}>
             {children}
         </GlobalContext.Provider>
