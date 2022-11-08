@@ -1,6 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { GlobalContext } from '../context/GlobalState' //TODO(1) Import the globalContext
 
 const SingleTransaction = ({ data }) => {
+
+    //TODO(2) Invoke the globalContext and destructuring
+    const { deleteTransaction } = useContext(GlobalContext)
+
+
     // Check if the transaction is an income
     if (data.incomeText || data.incomeAmount) {
         // Destructuring of Data
@@ -13,7 +19,7 @@ const SingleTransaction = ({ data }) => {
                 {/* amount */}
                 <span className="transaction-amount">${incomeAmount}</span>
                 {/* delete-btn */}
-                <button className="delete-btn">
+                <button className="delete-btn" onClick={() => deleteTransaction(id)}>
                     {/* fas fa-trash */}
                     <i className="fas fa-trash"></i>
                 </button>
@@ -32,7 +38,7 @@ const SingleTransaction = ({ data }) => {
                 {/* amount */}
                 <span className="transaction-amount">${expenseAmount}</span>
                 {/* delete-btn */}
-                <button className="delete-btn">
+                <button className="delete-btn" onClick={() => deleteTransaction(id)}>
                     {/* fas fa-trash */}
                     <i className="fas fa-trash"></i>
                 </button>

@@ -38,6 +38,11 @@ const AddTransaction = () => {
         }
         //TODO(3) Invoke the AddIncome fn and use as a param the new transaction
         addIncome(newIncomeTransaction)
+        // Clear all field
+        setIncome({
+            incomeText: "", // Income text set again as an empty string
+            incomeAmount: 0 // Income amount set again as 0
+        })
     }
 
     //#endregion 
@@ -72,6 +77,11 @@ const AddTransaction = () => {
         }
         //TODO(3) Invoke the AddExpense fn and use as a param the new transaction
         addExpense(newExpenseTransaction)
+        // Clear all field
+        setExpense({
+            expenseText: "", // expense text set again as an empty string
+            expenseAmount: 0 // expense amount set again as 0
+        })
     }
 
     //#endregion 
@@ -84,9 +94,9 @@ const AddTransaction = () => {
                 {/* input-group income */}
                 <div className="input-group income">
                     {/* Add Income */}
-                    <input type="text" name='incomeText' placeholder='Add Income...' autoComplete='off' onChange={incomeHandler} />
+                    <input type="text" name='incomeText' value={incomeText} placeholder='Add Income...' autoComplete='off' onChange={incomeHandler} />
                     {/* Amount */}
-                    <input type="number" placeholder='Amount' name='incomeAmount' autoComplete='off' onChange={incomeHandler} />
+                    <input type="number" placeholder='Amount' name='incomeAmount' value={incomeAmount} autoComplete='off' onChange={incomeHandler} />
                     {/* submit */}
                     <input type="submit" value="Submit" />
                 </div>
@@ -96,9 +106,9 @@ const AddTransaction = () => {
                 {/* input-group expense */}
                 <div className="input-group expense">
                     {/* Add Expense */}
-                    <input type="text" name='expenseText' placeholder='Add Expense...' autoComplete='off' onChange={expenseHandler} />
+                    <input type="text" name='expenseText' placeholder='Add Expense...' value={expenseText} autoComplete='off' onChange={expenseHandler} />
                     {/* Amount */}
-                    <input type="number" name='expenseAmount' placeholder='Amount' autoComplete='off' onChange={expenseHandler} />
+                    <input type="number" name='expenseAmount' placeholder='Amount' value={expenseAmount} autoComplete='off' onChange={expenseHandler} />
                     {/* submit */}
                     <input type="submit" value="Submit" />
                 </div>

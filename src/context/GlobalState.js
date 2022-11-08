@@ -1,8 +1,8 @@
 //TODO(1) : Import React and createContext / useReducer / AppReducer
 import React, { createContext, useReducer } from 'react'
-import AppReducer from '../reducers/AppReducer'
+import GlobalReducer from '../reducers/AppReducer'
 //TODO(9) : Import actions
-import { ADD_INCOME, ADD_EXPENSE } from '../reducers/actions'
+import { ADD_INCOME, ADD_EXPENSE, DELETE_TRANSACTION } from '../reducers/actions'
 
 
 //TODO(2) : Create an initialState object
@@ -29,7 +29,7 @@ export const GlobalContext = createContext(initialState)
 //TODO(5) : Export as GlobalContextProvider your provider fn (you have to wrap the App component into Index)
 export const GlobalContextProvider = ({ children }) => {
     //TODO(6) : Declare the useReducer hook with state and dispatch fn
-    const [state, dispatch] = useReducer(AppReducer, initialState)
+    const [state, dispatch] = useReducer(GlobalReducer, initialState)
 
     /** Function that allows me to add a new income from "AddTransaction.js"
      * 
@@ -55,6 +55,16 @@ export const GlobalContextProvider = ({ children }) => {
         })
     }
 
+    /** Function that allows me to remove a transaction from "AddTransaction.js"
+     * 
+     * @param {object} id 
+     */
+    const deleteTransaction = (id) => {
+        dispatch({
+            type: DELETE_TRANSACTION, // The action itself.
+            payload: id // It represents the payload of the action.
+        })
+    }
 
     //TODO(7) : Declare a return where you wrapped children into the provider
     return (
@@ -63,7 +73,8 @@ export const GlobalContextProvider = ({ children }) => {
             incomeTransactions: state.incomeTransactions,
             expenseTransactions: state.expenseTransactions,
             addIncome,
-            addExpense
+            addExpense,
+            deleteTransaction
         }}>
             {children}
         </GlobalContext.Provider>
