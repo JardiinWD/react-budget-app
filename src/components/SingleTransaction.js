@@ -17,7 +17,7 @@ const SingleTransaction = ({ data }) => {
                 {/* text */}
                 <span className="transaction-text">{incomeText}</span>
                 {/* amount */}
-                <span className="transaction-amount">${incomeAmount}</span>
+                <span className="transaction-amount">{incomeAmount}</span>
                 {/* delete-btn */}
                 <button className="delete-btn" onClick={() => deleteTransaction(id)}>
                     {/* fas fa-trash */}
@@ -36,7 +36,7 @@ const SingleTransaction = ({ data }) => {
                 {/* text */}
                 <span className="transaction-text">{expenseText}</span>
                 {/* amount */}
-                <span className="transaction-amount">${expenseAmount}</span>
+                <span className="transaction-amount">{expenseAmount}</span>
                 {/* delete-btn */}
                 <button className="delete-btn" onClick={() => deleteTransaction(id)}>
                     {/* fas fa-trash */}

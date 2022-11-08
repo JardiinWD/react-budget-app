@@ -23,6 +23,18 @@ const initialState = {
     ],
 }
 
+/** Function where I can format in a proper way
+ * 
+ * @param {number} item "These are my income/expenseAmounts that I wanted to format"
+ * @returns 
+ */
+const formatOptions = (item) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(item)
+// Update, with intl format number the incomeAmount
+initialState.incomeTransactions.forEach(element => element.incomeAmount = formatOptions(element.incomeAmount));
+// Update, with intl format number the expenseAmount
+initialState.expenseTransactions.forEach(element => element.expenseAmount = formatOptions(element.expenseAmount));
+
+
 //TODO(4) : Export as GlobalContext your initialState (wrapped in createContext fn)
 export const GlobalContext = createContext(initialState)
 
@@ -74,7 +86,8 @@ export const GlobalContextProvider = ({ children }) => {
             expenseTransactions: state.expenseTransactions,
             addIncome,
             addExpense,
-            deleteTransaction
+            deleteTransaction,
+            formatOptions
         }}>
             {children}
         </GlobalContext.Provider>
