@@ -1,17 +1,56 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
+import { v4 as uuidv4 } from 'uuid' // Import the univoque id creator
+import { GlobalContext } from '../context/GlobalState' //TODO(1) Import the globalContext
 
 const AddTransaction = () => {
+
+    //TODO(2) Invoke the globalContext and destructuring
+    const { addIncome } = useContext(GlobalContext)
+
+
+    // useState method for incomes
+    const [income, setIncome] = useState({
+        incomeText: "", // Income text declare as an empty string
+        incomeAmount: 0 // Income amount declare as 0
+    })
+    // incomeHandler fn
+    const incomeHandler = (e) => {
+        // Manage the income state
+        setIncome({
+            // Take the previous state
+            ...income,
+            // name='incomeText/incomeAmount' and take the value
+            [e.target.name]: e.target.value
+        })
+    }
+
+    // Destructuring of income state
+    const { incomeText, incomeAmount } = income
+    // Your Handler Arrow Function
+    const incomeSubmit = (event) => {
+        // Prevent the refresh
+        event.preventDefault()
+        // Create a new transaction
+        const newIncomeTransaction = {
+            id: uuidv4(), // Unique Id
+            incomeText, // incomeText prop that was destructured previously
+            incomeAmount: incomeAmount * 1 // incomeAmount prop that was destructured previously           
+        }
+        //TODO(3) Invoke the AddIncome fn and use as a param the new transaction
+        addIncome(newIncomeTransaction)
+    }
+
     return (
         /* form-wrapper */
         <div className="form-wrapper">
             {/* Add Income */}
-            <form>
+            <form onSubmit={incomeSubmit}>
                 {/* input-group income */}
                 <div className="input-group income">
                     {/* Add Income */}
-                    <input type="text" placeholder='Add Income...' autoComplete='off' />
+                    <input type="text" name='incomeText' placeholder='Add Income...' autoComplete='off' onChange={incomeHandler} />
                     {/* Amount */}
-                    <input type="number" placeholder='Amount' autoComplete='off' />
+                    <input type="number" placeholder='Amount' name='incomeAmount' autoComplete='off' onChange={incomeHandler} />
                     {/* submit */}
                     <input type="submit" value="Submit" />
                 </div>

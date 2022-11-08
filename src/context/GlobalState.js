@@ -1,6 +1,10 @@
 //TODO(1) : Import React and createContext / useReducer / AppReducer
 import React, { createContext, useReducer } from 'react'
 import AppReducer from '../reducers/AppReducer'
+//TODO(9) : Import actions
+import { ACTION, ADD_INCOME } from '../reducers/actions'
+
+
 
 //TODO(2) : Create an initialState object
 const initialState = {
@@ -28,12 +32,26 @@ export const GlobalContextProvider = ({ children }) => {
     //TODO(6) : Declare the useReducer hook with state and dispatch fn
     const [state, dispatch] = useReducer(AppReducer, initialState)
 
+    /** Function that allows me to add a new income from "AddTransaction.js"
+     * 
+     * @param {Object} incomeTransaction // A new income object
+     */
+    const addIncome = incomeTransaction => {
+        // Call the dispatch fn
+        dispatch({
+            type: ADD_INCOME,
+            payload: incomeTransaction // It represents the payload of the action.
+        })
+    }
+
+
     //TODO(7) : Declare a return where you wrapped children into the provider
     return (
         //TODO(8) : Pass through the value attribute the state
         <GlobalContext.Provider value={{
             incomeTransactions: state.incomeTransactions,
-            expenseTransactions: state.expenseTransactions
+            expenseTransactions: state.expenseTransactions,
+            addIncome,
         }}>
             {children}
         </GlobalContext.Provider>
