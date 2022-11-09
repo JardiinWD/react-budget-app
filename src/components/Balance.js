@@ -1,6 +1,28 @@
-import React from 'react'
+import React, { useContext } from 'react'
+//TODO(1) : Import globalContext
+import { GlobalContext } from '../context/GlobalState'
 
 const Balance = () => {
+
+    // Destructuring of globalContext
+    const { incomeTransactions, expenseTransactions, formatOptions } = useContext(GlobalContext)
+
+    // Map the total of incomeAmounts
+    const incomeAmounts = incomeTransactions.map(
+        (incomeTransaction) => {
+            return incomeTransaction.incomeAmount
+        }
+    ).reduce((acc, item) => {
+        return Number(acc = +acc + item)
+    }, 0).toFixed(2)
+
+    // Map the total of expenseAmounts
+    const expenseAmounts = expenseTransactions.map(
+        (expenseTransaction) => expenseTransaction.expenseAmount
+    ).reduce((acc, item) => {
+        return Number(acc += item)
+    }, 0).toFixed(2)
+
     return (
         /* balance */
         <div className="balance">
@@ -13,12 +35,12 @@ const Balance = () => {
                 {/* plus */}
                 <div className="plus">
                     <h3>Income</h3>
-                    <p>+$0.00</p>
+                    <p>{formatOptions(incomeAmounts)}</p>
                 </div>
                 {/* minus */}
                 <div className="minus">
                     <h3>Expense</h3>
-                    <p>-$0.00</p>
+                    <p>{formatOptions(expenseAmounts)}</p>
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@ import { GlobalContext } from '../context/GlobalState' //TODO(1) Import the glob
 const SingleTransaction = ({ data }) => {
 
     //TODO(2) Invoke the globalContext and destructuring
-    const { deleteTransaction } = useContext(GlobalContext)
+    const { deleteTransaction, formatOptions } = useContext(GlobalContext)
 
 
     // Check if the transaction is an income
@@ -17,7 +17,7 @@ const SingleTransaction = ({ data }) => {
                 {/* text */}
                 <span className="transaction-text">{incomeText}</span>
                 {/* amount */}
-                <span className="transaction-amount">{incomeAmount}</span>
+                <span className="transaction-amount">{formatOptions(incomeAmount)}</span>
                 {/* delete-btn */}
                 <button className="delete-btn" onClick={() => deleteTransaction(id)}>
                     {/* fas fa-trash */}
@@ -36,7 +36,7 @@ const SingleTransaction = ({ data }) => {
                 {/* text */}
                 <span className="transaction-text">{expenseText}</span>
                 {/* amount */}
-                <span className="transaction-amount">{expenseAmount}</span>
+                <span className="transaction-amount">{formatOptions(expenseAmount)}</span>
                 {/* delete-btn */}
                 <button className="delete-btn" onClick={() => deleteTransaction(id)}>
                     {/* fas fa-trash */}

@@ -29,10 +29,13 @@ const initialState = {
  * @returns 
  */
 const formatOptions = (item) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(item)
+
+// DON'T DO IT WHEN YOU HAVE TO SUM ALL THE AMOUNT. USE THE FORMAT ONLY FOR FORMATTING "TEXT"
+
 // Update, with intl format number the incomeAmount
-initialState.incomeTransactions.forEach(element => element.incomeAmount = formatOptions(element.incomeAmount));
+// initialState.incomeTransactions.forEach(element => (element.incomeAmount) = formatOptions(element.incomeAmount));
 // Update, with intl format number the expenseAmount
-initialState.expenseTransactions.forEach(element => element.expenseAmount = formatOptions(element.expenseAmount));
+// initialState.expenseTransactions.forEach(element => element.expenseAmount = formatOptions(element.expenseAmount));
 
 
 //TODO(4) : Export as GlobalContext your initialState (wrapped in createContext fn)

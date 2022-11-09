@@ -5,7 +5,7 @@ import { GlobalContext } from '../context/GlobalState' //TODO(1) Import the glob
 const AddTransaction = () => {
 
     //TODO(2) Invoke the globalContext and destructuring
-    const { addIncome, addExpense, formatOptions } = useContext(GlobalContext)
+    const { addIncome, addExpense } = useContext(GlobalContext)
 
     //#region Income
 
@@ -34,7 +34,7 @@ const AddTransaction = () => {
         const newIncomeTransaction = {
             id: uuidv4(), // Unique Id
             incomeText, // incomeText prop that was destructured previously
-            incomeAmount: formatOptions(incomeAmount * 1) // incomeAmount prop that was destructured previously           
+            incomeAmount: incomeAmount * 1 // incomeAmount prop that was destructured previously           
         }
         //TODO(3) Invoke the AddIncome fn and use as a param the new transaction
         addIncome(newIncomeTransaction)
@@ -73,7 +73,7 @@ const AddTransaction = () => {
         const newExpenseTransaction = {
             id: uuidv4(), // Unique Id
             expenseText, // expenseText prop that was destructured previously
-            expenseAmount: formatOptions(expenseAmount * 1) // expenseAmount prop that was destructured previously           
+            expenseAmount: expenseAmount * 1 // expenseAmount prop that was destructured previously           
         }
         //TODO(3) Invoke the AddExpense fn and use as a param the new transaction
         addExpense(newExpenseTransaction)
