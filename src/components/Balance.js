@@ -14,14 +14,14 @@ const Balance = () => {
         }
     ).reduce((acc, item) => {
         return Number(acc = +acc + item)
-    }, 0).toFixed(2)
+    }, 0)
 
     // Map the total of expenseAmounts
     const expenseAmounts = expenseTransactions.map(
         (expenseTransaction) => expenseTransaction.expenseAmount
     ).reduce((acc, item) => {
         return Number(acc += item)
-    }, 0).toFixed(2)
+    }, 0)
 
     return (
         /* balance */
@@ -29,7 +29,7 @@ const Balance = () => {
             {/* Your Balance */}
             <h2>Your Balance</h2>
             {/* Actual Balance */}
-            <h3>$0.00</h3>
+            <h3>{formatOptions(incomeAmounts - expenseAmounts)}</h3>
             {/* income-expense */}
             <div className="income-expense">
                 {/* plus */}

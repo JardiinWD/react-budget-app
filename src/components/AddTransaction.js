@@ -30,6 +30,10 @@ const AddTransaction = () => {
     const incomeSubmit = (event) => {
         // Prevent the refresh
         event.preventDefault()
+        // Check if user Try to submit empty value
+        if (incomeText === '') return
+        if (incomeAmount === '') return
+
         // Create a new transaction
         const newIncomeTransaction = {
             id: uuidv4(), // Unique Id
@@ -69,6 +73,10 @@ const AddTransaction = () => {
     const expenseSubmit = (event) => {
         // Prevent the refresh
         event.preventDefault()
+        // Check if user Try to submit empty value
+        if (expenseText === '') return
+        if (expenseAmount === '') return
+
         // Create a new transaction
         const newExpenseTransaction = {
             id: uuidv4(), // Unique Id

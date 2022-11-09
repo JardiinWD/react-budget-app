@@ -6,7 +6,6 @@ const SingleTransaction = ({ data }) => {
     //TODO(2) Invoke the globalContext and destructuring
     const { deleteTransaction, formatOptions } = useContext(GlobalContext)
 
-
     // Check if the transaction is an income
     if (data.incomeText || data.incomeAmount) {
         // Destructuring of Data

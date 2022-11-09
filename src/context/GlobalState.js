@@ -1,26 +1,17 @@
 //TODO(1) : Import React and createContext / useReducer / AppReducer
-import React, { createContext, useReducer } from 'react'
+import React, { createContext, useReducer, useEffect } from 'react'
 import GlobalReducer from '../reducers/AppReducer'
 //TODO(9) : Import actions
 import { ADD_INCOME, ADD_EXPENSE, DELETE_TRANSACTION } from '../reducers/actions'
 
 
 //TODO(2) : Create an initialState object
+
 const initialState = {
-    // Create an empty array for the incomes
-    incomeTransactions: [
-        //TODO(3) : Import a list of obj with dummy data
-        { id: 1, incomeText: "Car Sold", incomeAmount: 15000 },
-        { id: 2, incomeText: "Salary", incomeAmount: 5000 },
-        { id: 3, incomeText: "Bonus", incomeAmount: 13000 },
-    ],
-    // Create an empty array for expense
-    expenseTransactions: [
-        //TODO(3) : Import a list of obj with dummy data
-        { id: 4, expenseText: "Rent", expenseAmount: 1000 },
-        { id: 5, expenseText: "Bank", expenseAmount: 2000 },
-        { id: 6, expenseText: "Clothes", expenseAmount: 500 },
-    ],
+    // Create an empty array for the incomes or take the incomes from the localStorage
+    incomeTransactions: JSON.parse(localStorage.getItem('IncomeTransactions')) || [],
+    // Create an empty array for expense or take the expense from the localStorage
+    expenseTransactions: JSON.parse(localStorage.getItem('ExpenseTransactions')) || [],
 }
 
 /** Function where I can format in a proper way
@@ -57,6 +48,11 @@ export const GlobalContextProvider = ({ children }) => {
             payload: incomeTransaction // It represents the payload of the action.
         })
     }
+
+    useEffect(() => {
+        localStorage.setItem('IncomeTransactions', JSON.stringify(state.incomeTransactions))
+        localStorage.setItem('ExpenseTransactions', JSON.stringify(state.expenseTransactions))
+    })
 
     /** Function that allows me to add a new expense from "AddTransaction.js"
      * 
